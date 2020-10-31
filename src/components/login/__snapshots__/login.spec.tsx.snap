@@ -3,7 +3,7 @@
 exports[`<Login/> should render correctly 1`] = `
 <div>
   <h1>
-    Abner fonseca Login lint
+    Abner fonseca teste 
   </h1>
 </div>
 `

@@ -1484,7 +1484,7 @@
     lz-string "^1.4.4"
     pretty-format "^26.4.2"
 
-"@testing-library/jest-dom@^5.11.4":
+"@testing-library/jest-dom@^5.11.5":
   version "5.11.5"
   resolved "https://tr1.jfrog.io/tr1/api/npm/npm/@testing-library/jest-dom/-/jest-dom-5.11.5.tgz#44010f37f4b1e15f9d433963b515db0b05182fc8"
   integrity sha1-RAEPN/Sx4V+dQzljtRXbCwUYL8g=

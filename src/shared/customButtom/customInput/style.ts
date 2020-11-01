@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Buttom = styled.input`
+export const Buttom = styled.button`
   width: 100%;
   height: 42px;
   background: #56d353;
@@ -11,4 +11,5 @@ export const Buttom = styled.input`
   font-size: 1.8rem;
   font-weight: bold;
   color: #fff;
+  text-align: center;
 `

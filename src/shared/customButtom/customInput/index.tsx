@@ -2,18 +2,18 @@ import React from 'react'
 
 import { Buttom } from './style'
 
+type ButtonTypes = 'button' | 'submit' | 'reset'
+
 interface IcustomInput {
-  type: string
+  type?: ButtonTypes
   placeholder?: string
   text?: string
 }
 
-const CustomButtom: React.FC<IcustomInput> = ({ type, placeholder, text }) => {
+const CustomButtom: React.FC<IcustomInput> = ({ type, text }) => {
   return (
     <div>
-      <Buttom type={type} placeholder={placeholder}>
-        {text}
-      </Buttom>
+      <Buttom type={type}>{text}</Buttom>
     </div>
   )
 }

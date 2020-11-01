@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
-export const CustomDiv = styled.div`
+export const DivHome = styled.div`
   background-color: #b40909;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  padding: 30px 0;
   .link a {
     color: #fff;
   }

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const CustomDiv = styled.div`
   background-color: #b40909;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

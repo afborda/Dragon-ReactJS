@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef, useState } from 'react'
 import CustomButtom from '../../shared/customButtom/customInput'
 import Input from '../../shared/customInput'
@@ -52,7 +51,7 @@ const Login: React.FC = () => {
                 placeholder="Digite sua senha"
               />
             </div>
-            <CustomButtom type="submit" />
+            <CustomButtom type="submit" text="Entrar" />
           </Form>
         </div>
       </Center>

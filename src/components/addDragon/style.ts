@@ -6,6 +6,7 @@ export const CustomDiv = styled.div`
   background-size: 100%;
   width: 100%;
   height: 100vh;
+  padding: 30px 0;
   div {
     display: flex;
     justify-content: center;

@@ -51,7 +51,7 @@ const AddDragon: React.FC = () => {
                 placeholder="Tipo de dragão"
               />
             </div>
-            <CustomButtom type="submit" />
+            <CustomButtom type="submit" text="Adicionar dragão" />
           </Form>
         </div>
       </Center>

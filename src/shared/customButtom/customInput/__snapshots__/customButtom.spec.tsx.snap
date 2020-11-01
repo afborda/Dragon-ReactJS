@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login/> should render correctly 1`] = `
+<div>
+  <input
+    class="style__Buttom-gGydxe bTXZgu"
+    placeholder="teste"
+    type="text"
+  />
+</div>
+`

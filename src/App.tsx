@@ -1,11 +1,15 @@
 import React from 'react'
-import Login from './components/login'
+import { BrowserRouter } from 'react-router-dom'
+
+import Routes from './routes/routes'
 import GlobalStyles from './styles/global'
-function App() {
+const App = () => {
   return (
     <div className="App">
       <GlobalStyles />
-      <Login />
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
     </div>
   )
 }

@@ -1,9 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Login/> should render correctly 1`] = `
-<div>
-  <h1>
-    Abner fonseca teste 
-  </h1>
+<div
+  class="style__CustomDiv-btqmCT jaKSvJ"
+>
+  <div
+    class="style__Center-jZjGrQ ieRdVQ"
+  >
+    <div>
+      <div>
+        <div>
+          <img
+            alt="Image de perfil do usuario"
+            class="style__CustomImg-gVgzYn iFHTNp"
+            src="test-file-stub"
+          />
+        </div>
+      </div>
+      <form>
+        <div>
+          <input
+            class="style__InputType-eWYwgd bgsYnK"
+            placeholder="Digite seu e-mail"
+            required=""
+            type="email"
+          />
+          <input
+            class="style__InputType-eWYwgd bgsYnK"
+            placeholder="Digite sua senha"
+            required=""
+            type="password"
+          />
+        </div>
+        <div>
+          <input
+            class="style__Buttom-gGydxe bTXZgu"
+            type="submit"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 `

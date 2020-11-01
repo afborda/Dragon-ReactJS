@@ -5,11 +5,10 @@ import { Form } from '@unform/web'
 import { NavLink } from 'react-router-dom'
 
 import Input from '../../shared/customInput'
-import ProfileImage from '../../shared/profile_Image'
+import ProfileImage from '../../assets/img/img_user.png'
 import PlusCircle from '../../assets/icons/plus-circle.png'
 
 import { CustomDiv, Wellcome, ImaIcon, ConfigTame, ContainerDiv } from './style'
-import ListDragon from '../listDragons'
 
 const mockDragon = [
   {

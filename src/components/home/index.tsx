@@ -14,31 +14,14 @@ import { DivHome, Wellcome, ImaIcon, ConfigTame, ContainerDiv } from './style'
 import ListDragon from '../listDragons'
 
 const Home: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false)
   const formRef = useRef<FormHandles>(null)
-
-  const HandleSubmit: SubmitHandler = ({ ...data }, { reset }) => {
-    const { email, password } = data
-    try {
-      setIsLoading(true)
-    } catch (error) {
-      alert(error)
-    }
-  }
 
   return (
     <DivHome>
       <ContainerDiv>
         <ProfileImage />
         <Wellcome>Bem vindo: Db server</Wellcome>
-        <Form ref={formRef} onSubmit={HandleSubmit}>
-          <Input
-            name="text"
-            required
-            type="email"
-            placeholder="Buscar dragão"
-          />
-        </Form>
+
         <ConfigTame>
           <div>
             <h2>Dragoes capturados</h2>

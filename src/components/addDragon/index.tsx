@@ -3,27 +3,26 @@ import React, { useRef, useState } from 'react'
 import CustomButtom from '../../shared/customButtom/customInput'
 import Input from '../../shared/customInput'
 import ProfileImage from '../../shared/profile_Image'
+import AddDragonData from '../../service/externalApi/addDragon'
 import { CustomDiv, Center } from './style'
 import { Form } from '@unform/web'
-import { useHistory } from 'react-router-dom'
 import { FormHandles, SubmitHandler } from '@unform/core'
-
-interface ILoginFormData {
-  email: string
-  password: string
-}
+import { useHistory } from 'react-router-dom'
 
 const AddDragon: React.FC = () => {
   const history = useHistory()
-  const [isLoading, setIsLoading] = useState(false)
+
   const formRef = useRef<FormHandles>(null)
 
-  const HandleSubmit: SubmitHandler<ILoginFormData> = (
-    { ...data },
-    { reset }
-  ) => {
+  const HandleSubmit: SubmitHandler = ({ ...data }, { reset }) => {
     try {
-      setIsLoading(true)
+      const addDragon = async () => {
+        const response = await AddDragonData(data)
+      }
+      addDragon()
+
+      history.push('/')
+      reset()
     } catch (error) {
       alert(error)
     }
@@ -39,17 +38,12 @@ const AddDragon: React.FC = () => {
           <Form ref={formRef} onSubmit={HandleSubmit}>
             <div>
               <Input
-                name="Nome"
-                required
-                type="text"
-                placeholder="Nome do dragão"
-              />
-              <Input
                 name="type"
                 required
                 type="text"
                 placeholder="Tipo de dragão"
               />
+              <Input name="date" required type="date" placeholder="capturado" />
             </div>
             <CustomButtom type="submit" text="Adicionar dragão" />
           </Form>

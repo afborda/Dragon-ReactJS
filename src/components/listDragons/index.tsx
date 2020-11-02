@@ -7,7 +7,7 @@ import EditIcon from '../../assets/icons/edit.png'
 import DetailIcon from '../../assets/icons/detail.png'
 import {
   firstCapitalLetter,
-  formatDate,
+  formatDatePT,
   orderByObject
 } from '../../utils/functions'
 import { DeleteDragon, getDragon } from '../../service/externalApi'
@@ -66,7 +66,7 @@ const ListDragon: React.FC = () => {
           </div>
           <div>
             <p>Tipo: {firstCapitalLetter(type)}</p>
-            <p>Data: {formatDate(createdAt)}</p>
+            <p>Data: {formatDatePT(createdAt)}</p>
           </div>
         </ListDragons>
       ))}

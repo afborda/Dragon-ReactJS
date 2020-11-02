@@ -4,7 +4,7 @@ import { NameUser, Text, DflexBetween, DivMain, InitialText } from './style'
 import ProfileImage from '../../shared/profile_Image'
 import { useParams } from 'react-router-dom'
 import { GetDragonDetail } from '../../service/externalApi'
-import { formatDate } from '../../utils/functions'
+import { formatDatePT } from '../../utils/functions'
 
 interface Iparams {
   id: string
@@ -50,13 +50,13 @@ const DragonDetail: React.FC = () => {
           <InitialText>
             <Text>
               <strong>Capturado: </strong>
-              {formatDate(detail.createdAt)}
+              {formatDatePT(detail.createdAt)}
             </Text>
           </InitialText>
           <Text>
             <strong>História: </strong>{' '}
             {detail.histories.length > 0 ? (
-              <p>{detail.histories[1]}</p>
+              <p>{detail.histories[0]}</p>
             ) : (
               <p>-</p>
             )}

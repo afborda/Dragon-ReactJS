@@ -1,25 +1,58 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import CustomButtom from '../../shared/customButtom/customInput'
 import Input from '../../shared/customInput'
 import ProfileImage from '../../shared/profile_Image'
 import { CustomDiv, Center } from './style'
 import { Form } from '@unform/web'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { FormHandles, SubmitHandler } from '@unform/core'
+import { GetDragonDetail } from '../../service/externalApi'
+import updateDragon from '../../service/externalApi/updateDragon'
+
+interface IDragonData {
+  id: string
+  createdAt: string
+  name: string
+  type: string
+  histories: string[]
+}
+
+interface Iparams {
+  id: string
+}
 
 const EditDragon: React.FC = () => {
-  const history = useHistory()
-  const [isLoading, setIsLoading] = useState(false)
   const formRef = useRef<FormHandles>(null)
+  const [dataDragon, setDataDragon] = useState<IDragonData>()
+
+  const { id } = useParams<Iparams>()
 
   const HandleSubmit: SubmitHandler = ({ ...data }, { reset }) => {
     try {
-      setIsLoading(true)
+      const editDragon = async () => {
+        const response = await updateDragon(id, data)
+      }
+      editDragon()
+      reset()
     } catch (error) {
       alert(error)
     }
   }
+
+  useEffect(() => {
+    const loadDragonDetail = async () => {
+      const response = await GetDragonDetail(id)
+
+      setDataDragon(response)
+    }
+    loadDragonDetail()
+    if (formRef.current)
+      formRef.current.setData({
+        name: dataDragon?.name,
+        type: dataDragon?.type
+      })
+  }, [])
 
   return (
     <CustomDiv>
@@ -31,7 +64,7 @@ const EditDragon: React.FC = () => {
           <Form ref={formRef} onSubmit={HandleSubmit}>
             <div>
               <Input
-                name="Nome"
+                name="name"
                 required
                 type="text"
                 placeholder="Nome do dragão"
@@ -41,6 +74,12 @@ const EditDragon: React.FC = () => {
                 required
                 type="text"
                 placeholder="Tipo de dragão"
+              />
+              <Input
+                name="createdAt"
+                required
+                type="date"
+                placeholder="capturado"
               />
             </div>
             <CustomButtom type="submit" text="Alterar dragão" />

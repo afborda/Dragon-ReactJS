@@ -38,8 +38,6 @@ app.post('/api/login', (req, res) => {
 
   const loginData = req.body
 
-  console.log(req)
-
   if (loginData.login === user.email && loginData.password === user.password) {
     jwt.sign({ user }, 'secretkey', (err, token) => [
       res.json({

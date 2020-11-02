@@ -11,8 +11,6 @@ import PlusCircle from '../../assets/icons/plus-circle.png'
 
 import { DivHome, Wellcome, ImaIcon, ConfigTame, ContainerDiv } from './style'
 
-//mock
-import { mocksDragons } from '../../mocks/dragonMoks'
 import ListDragon from '../listDragons'
 
 const Home: React.FC = () => {
@@ -49,7 +47,7 @@ const Home: React.FC = () => {
             <ImaIcon src={PlusCircle} alt="botão para adicionar mais dragoes" />
           </NavLink>
         </ConfigTame>
-        <ListDragon data={mocksDragons} />
+        <ListDragon />
       </ContainerDiv>
     </DivHome>
   )

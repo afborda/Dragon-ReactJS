@@ -1,51 +1,66 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { ListDragons, ImaIcon } from './style'
 import { NavLink } from 'react-router-dom'
 import DeleteIcon from '../../assets/icons/delete.png'
 import EditIcon from '../../assets/icons/edit.png'
 import DetailIcon from '../../assets/icons/detail.png'
-import { firstCapitalLetter, formatDate } from '../../utils/functions'
+import {
+  firstCapitalLetter,
+  formatDate,
+  orderByObject
+} from '../../utils/functions'
+import { DeleteDragon, getDragon } from '../../service/externalApi'
 
 interface IDragonData {
-  data: {
-    id: string
-    createdAt: string
-    name: string
-    type: string
-    histories: string[]
-  }[]
+  id: string
+  createdAt: string
+  name: string
+  type: string
+  histories: string[]
 }
 
-const ListDragon: React.FC<IDragonData> = (data: IDragonData) => {
-  const orderedList = data.data.sort((a: any, b: any) => {
-    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
-  })
+const ListDragon: React.FC = () => {
+  const [listDragon, setListDragon] = useState<IDragonData[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+
+  useEffect(() => {
+    const loadDragon = async () => {
+      const response = await getDragon()
+      if (loading) {
+        setListDragon(response)
+      }
+      setLoading(false)
+    }
+
+    loadDragon()
+  }, [loading])
+
+  const deleteDragon = async (id: string) => {
+    const dragon = await DeleteDragon(id)
+    setLoading(true)
+  }
+
+  if (!listDragon) return null
 
   return (
     <>
-      {orderedList.map(({ id, name, createdAt, type }) => (
+      {orderByObject(listDragon).map(({ id, name, createdAt, type }) => (
         <ListDragons key={id}>
           <div>
             <p>Nome: {firstCapitalLetter(name)}</p>
             <div>
-              <NavLink to={'/'}>
-                <ImaIcon
-                  src={EditIcon}
-                  alt="botão para adicionar mais dragoes"
-                />
+              <NavLink to={'/edit/' + id}>
+                <ImaIcon src={EditIcon} alt="botão para editar  dragoes" />
               </NavLink>
-              <NavLink to="/detail">
+              <NavLink to={'/detail/' + id}>
                 <ImaIcon
                   src={DetailIcon}
-                  alt="botão para adicionar mais dragoes"
+                  alt="botão para ver detales de dragão"
                 />
               </NavLink>
-              <NavLink to="/">
-                <ImaIcon
-                  src={DeleteIcon}
-                  alt="botão para adicionar mais dragoes"
-                />
+              <NavLink onClick={() => deleteDragon(id)} to="/">
+                <ImaIcon src={DeleteIcon} alt="botão para deletar dragão" />
               </NavLink>
             </div>
           </div>

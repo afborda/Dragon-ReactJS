@@ -1,13 +1,6 @@
 import { format } from 'date-fns'
 import { orderBy } from 'lodash'
-
-interface IDragonData {
-  id: string
-  createdAt: string
-  name: string
-  type: string
-  histories: string[]
-}
+import IDragonData from '../interfaces/IDragonData'
 
 export function firstCapitalLetter(value: string) {
   return value.charAt(0).toUpperCase() + value.slice(1)
@@ -20,7 +13,7 @@ export function formatDateEN(value: string) {
   return format(new Date(value), 'yyyy/MM/dd')
 }
 
-export function orderByObject(object: IDragonData[]) {
-  const orderDragons = orderBy(object, ['name'], ['asc'])
+export function orderByArray(array: IDragonData[]) {
+  const orderDragons = orderBy(array, ['name'], ['asc'])
   return orderDragons
 }

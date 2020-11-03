@@ -1,22 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useRef, useState } from 'react'
-import CustomButtom from '../../shared/customButtom/customInput'
+import CustomButtom from '../../shared/customButtom'
 import Input from '../../shared/customInput'
 import ProfileImage from '../../shared/profile_Image'
 import { CustomDiv, Center } from './style'
 import { Form } from '@unform/web'
 import { useHistory, useParams } from 'react-router-dom'
 import { FormHandles, SubmitHandler } from '@unform/core'
-import { GetDragonDetail } from '../../service/externalApi'
-import updateDragon from '../../service/externalApi/updateDragon'
-
-interface IDragonData {
-  id: string
-  createdAt: string
-  name: string
-  type: string
-  histories: string[]
-}
+import { GetDragonDetail } from '../../services/DragonService'
+import updateDragon from '../../services/DragonService/updateDragon'
+import IDragonData from '../../interfaces/IDragonData'
 
 interface Iparams {
   id: string
@@ -31,7 +24,7 @@ const EditDragon: React.FC = () => {
   const HandleSubmit: SubmitHandler = ({ ...data }, { reset }) => {
     try {
       const editDragon = async () => {
-        const response = await updateDragon(id, data)
+        await updateDragon(id, data)
       }
       editDragon()
       reset()
@@ -41,18 +34,20 @@ const EditDragon: React.FC = () => {
   }
 
   useEffect(() => {
+    console.log(id)
     const loadDragonDetail = async () => {
       const response = await GetDragonDetail(id)
 
       setDataDragon(response)
     }
+
     loadDragonDetail()
-    if (formRef.current)
-      formRef.current.setData({
-        name: dataDragon?.name,
-        type: dataDragon?.type
-      })
-  }, [])
+
+    formRef.current?.setData({
+      name: dataDragon?.name,
+      type: dataDragon?.type
+    })
+  }, [id])
 
   return (
     <CustomDiv>

@@ -8,44 +8,31 @@ import DetailIcon from '../../assets/icons/detail.png'
 import {
   firstCapitalLetter,
   formatDatePT,
-  orderByObject
+  orderByArray
 } from '../../utils/functions'
-import { DeleteDragon, getDragon } from '../../service/externalApi'
-
-interface IDragonData {
-  id: string
-  createdAt: string
-  name: string
-  type: string
-  histories: string[]
-}
+import { DeleteDragon, getDragon } from '../../services/DragonService'
+import IDragonData from '../../interfaces/IDragonData'
 
 const ListDragon: React.FC = () => {
   const [listDragon, setListDragon] = useState<IDragonData[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
 
-  useEffect(() => {
-    const loadDragon = async () => {
-      const response = await getDragon()
-      if (loading) {
-        setListDragon(response)
-      }
-      setLoading(false)
-    }
-
-    loadDragon()
-  }, [loading])
-
-  const deleteDragon = async (id: string) => {
-    const dragon = await DeleteDragon(id)
-    setLoading(true)
+  const loadDragon = async () => {
+    const response = await getDragon()
+    setListDragon(response)
   }
 
-  if (!listDragon) return null
+  useEffect(() => {
+    loadDragon()
+  }, [])
+
+  const deleteDragon = async (id: string) => {
+    await DeleteDragon(id)
+    loadDragon()
+  }
 
   return (
     <>
-      {orderByObject(listDragon).map(({ id, name, createdAt, type }) => (
+      {orderByArray(listDragon).map(({ id, name, createdAt, type }) => (
         <ListDragons key={id}>
           <div>
             <p>Nome: {firstCapitalLetter(name)}</p>

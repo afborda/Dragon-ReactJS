@@ -3,19 +3,12 @@ import { NameUser, Text, DflexBetween, DivMain, InitialText } from './style'
 
 import ProfileImage from '../../shared/profile_Image'
 import { useParams } from 'react-router-dom'
-import { GetDragonDetail } from '../../service/externalApi'
+import { GetDragonDetail } from '../../services/DragonService'
 import { formatDatePT } from '../../utils/functions'
+import IDragonData from '../../interfaces/IDragonData'
 
 interface Iparams {
   id: string
-}
-
-interface IDragonData {
-  id: string
-  createdAt: string
-  name: string
-  type: string
-  histories: string[]
 }
 
 const DragonDetail: React.FC = () => {
@@ -56,9 +49,9 @@ const DragonDetail: React.FC = () => {
           <Text>
             <strong>História: </strong>{' '}
             {detail.histories.length > 0 ? (
-              <p>{detail.histories[0]}</p>
+              <span>{detail.histories.join('')}</span>
             ) : (
-              <p>-</p>
+              <span> - </span>
             )}
           </Text>
         </div>

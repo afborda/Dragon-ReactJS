@@ -7,14 +7,26 @@ import Login from '../components/login'
 import DragonDetail from '../components/dragonDetail'
 import EditDragon from '../components/editDragon'
 
+import AuthenticateRoute from './AuthenticateRoutes'
+
 const Routes: React.FC = () => (
   <Switch>
     <Route name="Login" exact path="/login" component={Login} />
-    <Route name="Home" exact path="/" component={Home} />
-    <Route name="new" exact path="/new" component={AddDragon} />
-    <Route name="detail" exact path="/detail/:id" component={DragonDetail} />
-    <Route name="edit" exact path="/edit/:id" component={EditDragon} />
-    <Route name="notfound" path="*" component={Home} />
+    <AuthenticateRoute name="Home" exact path="/" component={Home} />
+    <AuthenticateRoute name="new" exact path="/new" component={AddDragon} />
+    <AuthenticateRoute
+      name="detail"
+      exact
+      path="/detail/:id"
+      component={DragonDetail}
+    />
+    <AuthenticateRoute
+      name="edit"
+      exact
+      path="/edit/:id"
+      component={EditDragon}
+    />
+    <AuthenticateRoute name="notfound" path="*" component={Home} />
   </Switch>
 )
 

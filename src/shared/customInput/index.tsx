@@ -8,12 +8,12 @@ import { useField } from '@unform/core'
 interface InputProps {
   name: string
   type: string
-  required: boolean
+  required?: boolean
   placeholder: string
 }
 
 const Input: React.FC<InputProps> = ({ name, ...otherProps }) => {
-  const { fieldName, registerField, defaultValue, error } = useField(name)
+  const { fieldName, registerField, error } = useField(name)
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Input: React.FC<InputProps> = ({ name, ...otherProps }) => {
 
   return (
     <>
-      <InputType ref={inputRef} defaultValue={defaultValue} {...otherProps} />
+      <InputType ref={inputRef} {...otherProps} />
     </>
   )
 }

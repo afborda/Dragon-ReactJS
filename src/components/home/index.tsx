@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useRef, useState } from 'react'
-import { FormHandles, SubmitHandler } from '@unform/core'
-import { Form } from '@unform/web'
+import React, { useRef, useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import LocalStorageService from '../../services/LocalStorageService'
 
-import Input from '../../shared/customInput'
 import ProfileImage from '../../shared/profile_Image'
 
 import PlusCircle from '../../assets/icons/plus-circle.png'
@@ -14,13 +11,20 @@ import { DivHome, Wellcome, ImaIcon, ConfigTame, ContainerDiv } from './style'
 import ListDragon from '../listDragons'
 
 const Home: React.FC = () => {
-  const formRef = useRef<FormHandles>(null)
+  const [user, setUser] = useState('')
+
+  useEffect(() => {
+    const localStorageService = LocalStorageService()
+    const { user } = localStorageService.GetToken()
+
+    if (user) setUser(user)
+  }, [])
 
   return (
     <DivHome>
       <ContainerDiv>
         <ProfileImage />
-        <Wellcome>Bem vindo: Db server</Wellcome>
+        <Wellcome>Bem vindo: {user}</Wellcome>
 
         <ConfigTame>
           <div>

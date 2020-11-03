@@ -1,30 +1,39 @@
-import React, { useRef, useState } from 'react'
-import CustomButtom from '../../shared/customButtom/customInput'
+import React, { useRef } from 'react'
+import LocalStorageService from '../../services/LocalStorageService'
+import CustomButtom from '../../shared/customButtom'
 import Input from '../../shared/customInput'
 import ProfileImage from '../../shared/profile_Image'
 import { CustomDiv, Center } from './style'
+
 import { Form } from '@unform/web'
 import { useHistory } from 'react-router-dom'
 import { FormHandles, SubmitHandler } from '@unform/core'
-
+import { usersMoks } from '../../mocks/login'
 interface ILoginFormData {
-  email: string
+  login: string
   password: string
 }
 
 const Login: React.FC = () => {
+  const localStorageService = LocalStorageService()
   const history = useHistory()
-  const [isLoading, setIsLoading] = useState(false)
   const formRef = useRef<FormHandles>(null)
 
-  const HandleSubmit: SubmitHandler<ILoginFormData> = (
+  const HandleSubmit: SubmitHandler<ILoginFormData> = async (
     { ...data },
     { reset }
   ) => {
-    const { email, password } = data
     try {
-      setIsLoading(true)
+      const { login } = data
+      const user = usersMoks.find((user) => user.login === login)
+      console.log(user)
+      if (!user) return
+
+      localStorageService.SetToken(user.token, user.name)
+
+      history.push('/')
     } catch (error) {
+      localStorageService.ClearToken()
       alert(error)
     }
   }
@@ -39,7 +48,7 @@ const Login: React.FC = () => {
           <Form ref={formRef} onSubmit={HandleSubmit}>
             <div>
               <Input
-                name="email"
+                name="login"
                 required
                 type="email"
                 placeholder="Digite seu e-mail"

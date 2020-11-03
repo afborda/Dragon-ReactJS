@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef, useState } from 'react'
-import CustomButtom from '../../shared/customButtom/customInput'
+import CustomButtom from '../../shared/customButtom'
+import CustomSelect from '../../shared/customSelect'
 import Input from '../../shared/customInput'
 import ProfileImage from '../../shared/profile_Image'
-import AddDragonData from '../../service/externalApi/addDragon'
+import AddDragonData from '../../services/DragonService/addDragon'
 import { CustomDiv, Center } from './style'
 import { Form } from '@unform/web'
 import { FormHandles, SubmitHandler } from '@unform/core'
@@ -14,12 +15,10 @@ const AddDragon: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null)
 
-  const HandleSubmit: SubmitHandler = ({ ...data }, { reset }) => {
+  const HandleSubmit: SubmitHandler = async ({ ...data }, { reset }) => {
     try {
-      const addDragon = async () => {
-        const response = await AddDragonData(data)
-      }
-      addDragon()
+      data.histories = data.histories.split(' ')
+      await AddDragonData(data)
 
       history.push('/')
       reset()
@@ -43,7 +42,13 @@ const AddDragon: React.FC = () => {
                 type="text"
                 placeholder="Tipo de dragão"
               />
-              <Input name="date" required type="date" placeholder="capturado" />
+
+              <Input
+                name="histories"
+                required
+                type="text"
+                placeholder="História deste dragão"
+              />
             </div>
             <CustomButtom type="submit" text="Adicionar dragão" />
           </Form>

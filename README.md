@@ -42,7 +42,6 @@
 1. Abra o Terminal do VScode
 1. Execute yarn install ou npm install
 1. Execute yarn start (e aguarde sua aplicação subir )
-1. Execute yarn startDB ( para que seu banco de dados suba em uma porta diferente de sua aplicação)
 1. Coloque na barra de busca do seu navegador http://localhost:3000/
    Tudo pronto!
 

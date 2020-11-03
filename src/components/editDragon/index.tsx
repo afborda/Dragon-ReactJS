@@ -17,36 +17,31 @@ interface Iparams {
 
 const EditDragon: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
-  const [dataDragon, setDataDragon] = useState<IDragonData>()
+  const history = useHistory()
 
   const { id } = useParams<Iparams>()
 
-  const HandleSubmit: SubmitHandler = ({ ...data }, { reset }) => {
+  const HandleSubmit: SubmitHandler = async ({ ...data }, { reset }) => {
     try {
-      const editDragon = async () => {
-        await updateDragon(id, data)
-      }
-      editDragon()
-      reset()
+      await updateDragon(id, data)
+
+      history.push('/')
     } catch (error) {
       alert(error)
     }
   }
 
   useEffect(() => {
-    console.log(id)
     const loadDragonDetail = async () => {
       const response = await GetDragonDetail(id)
 
-      setDataDragon(response)
+      formRef.current?.setData({
+        name: response.name,
+        type: response.type
+      })
     }
 
     loadDragonDetail()
-
-    formRef.current?.setData({
-      name: dataDragon?.name,
-      type: dataDragon?.type
-    })
   }, [id])
 
   return (

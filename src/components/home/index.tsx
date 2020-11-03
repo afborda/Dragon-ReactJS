@@ -1,9 +1,8 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
-import LocalStorageService from '../../services/LocalStorageService'
+import { useUserAuth } from '../../context/AuthProvider'
 
 import ProfileImage from '../../shared/profile_Image'
-
 import PlusCircle from '../../assets/icons/plus-circle.png'
 
 import { DivHome, Wellcome, ImaIcon, ConfigTame, ContainerDiv } from './style'
@@ -11,20 +10,15 @@ import { DivHome, Wellcome, ImaIcon, ConfigTame, ContainerDiv } from './style'
 import ListDragon from '../listDragons'
 
 const Home: React.FC = () => {
-  const [user, setUser] = useState('')
+  const { userAuth } = useUserAuth()
 
-  useEffect(() => {
-    const localStorageService = LocalStorageService()
-    const { user } = localStorageService.GetToken()
-
-    if (user) setUser(user)
-  }, [])
+  console.log(userAuth)
 
   return (
     <DivHome>
       <ContainerDiv>
         <ProfileImage />
-        <Wellcome>Bem vindo: {user}</Wellcome>
+        <Wellcome>Bem vindo {userAuth?.name}</Wellcome>
 
         <ConfigTame>
           <div>

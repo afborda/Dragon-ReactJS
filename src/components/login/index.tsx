@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import LocalStorageService from '../../services/LocalStorageService'
 import CustomButtom from '../../shared/customButtom'
 import Input from '../../shared/customInput'
 import ProfileImage from '../../shared/profile_Image'
@@ -9,31 +8,30 @@ import { Form } from '@unform/web'
 import { useHistory } from 'react-router-dom'
 import { FormHandles, SubmitHandler } from '@unform/core'
 import { usersMoks } from '../../mocks/login'
+
+import { useUserAuth } from '../../context/AuthProvider'
 interface ILoginFormData {
   login: string
   password: string
 }
 
 const Login: React.FC = () => {
-  const localStorageService = LocalStorageService()
+  const { setUserAuth } = useUserAuth()
   const history = useHistory()
   const formRef = useRef<FormHandles>(null)
 
-  const HandleSubmit: SubmitHandler<ILoginFormData> = async (
-    { ...data },
-    { reset }
-  ) => {
+  const HandleSubmit: SubmitHandler<ILoginFormData> = async ({ ...data }) => {
     try {
-      const { login } = data
-      const user = usersMoks.find((user) => user.login === login)
-      console.log(user)
-      if (!user) return
+      const { password } = data
+      const user = usersMoks.find((user) => user.password === password)
 
-      localStorageService.SetToken(user.token, user.name)
-
-      history.push('/')
+      if (!user) {
+        return
+      } else {
+        setUserAuth(user)
+        history.push('/')
+      }
     } catch (error) {
-      localStorageService.ClearToken()
       alert(error)
     }
   }

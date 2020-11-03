@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ListDragons, ImaIcon } from './style'
 import { NavLink } from 'react-router-dom'
 import DeleteIcon from '../../assets/icons/delete.png'

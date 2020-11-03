@@ -21,7 +21,7 @@ const DragonDetail: React.FC = () => {
       setDetail(response)
     }
     loadDragonDetail()
-  }, [])
+  }, [id])
 
   if (!detail) return null
 

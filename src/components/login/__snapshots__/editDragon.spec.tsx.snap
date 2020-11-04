@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListDragon/> should  render the heading 1`] = `
+<div
+  class="style__CustomDiv-btqmCT jaKSvJ"
+>
+  <div
+    class="style__Center-jZjGrQ ieRdVQ"
+  >
+    <div>
+      <div>
+        <div>
+          <img
+            alt="Image de perfil do usuario"
+            class="style__CustomImg-gVgzYn iFHTNp"
+            src="test-file-stub"
+          />
+        </div>
+      </div>
+      <form>
+        <div>
+          <input
+            class="style__InputType-eWYwgd bgsYnK"
+            placeholder="Digite seu e-mail"
+            required=""
+            type="email"
+          />
+          <input
+            class="style__InputType-eWYwgd bgsYnK"
+            placeholder="Digite sua senha"
+            required=""
+            type="password"
+          />
+        </div>
+        <div>
+          <button
+            class="style__Buttom-gGydxe kWrCVF"
+            type="submit"
+          >
+            Entrar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListDragon/> should  render the heading 1`] = `
+<div>
+  <button
+    class="style__Buttom-gGydxe kWrCVF"
+  />
+</div>
+`

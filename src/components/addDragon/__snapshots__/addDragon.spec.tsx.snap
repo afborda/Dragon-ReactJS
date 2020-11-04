@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddDragon> should  render the heading 1`] = `
+<div
+  class="style__CustomDiv-btqmCT eBSEPy"
+>
+  <div
+    class="style__Center-jZjGrQ ieRdVQ"
+  >
+    <div>
+      <div>
+        <div>
+          <img
+            alt="Image de perfil do usuario"
+            class="style__CustomImg-gVgzYn iFHTNp"
+            src="test-file-stub"
+          />
+        </div>
+      </div>
+      <form>
+        <div>
+          <input
+            class="style__InputType-eWYwgd bgsYnK"
+            placeholder="Tipo de dragão"
+            required=""
+            type="text"
+          />
+          <input
+            class="style__InputType-eWYwgd bgsYnK"
+            placeholder="História deste dragão"
+            required=""
+            type="text"
+          />
+        </div>
+        <div>
+          <button
+            class="style__Buttom-gGydxe kWrCVF"
+            type="submit"
+          >
+            Adicionar dragão
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`
